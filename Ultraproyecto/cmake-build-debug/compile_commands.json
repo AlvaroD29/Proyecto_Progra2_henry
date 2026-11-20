@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/alvaro/CLionProjects/Ultraproyecto/cmake-build-debug",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles/untitled19.dir/main.cpp.o -c /home/alvaro/CLionProjects/Ultraproyecto/main.cpp",
+  "file": "/home/alvaro/CLionProjects/Ultraproyecto/main.cpp",
+  "output": "CMakeFiles/untitled19.dir/main.cpp.o"
+}
+]

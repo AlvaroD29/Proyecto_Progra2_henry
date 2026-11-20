@@ -3,12 +3,12 @@
 
 #include "Defensa.h"
 
+const int ARQUERO_COSTO = 50;
+
 class Arquero : public Defensa {
 public:
-    enum { COSTO = 50 };
-
     Arquero(const Posicion& pos)
-        : Defensa("Arquero", 'A', pos, 10, 3.0, COSTO) {}
+        : Defensa("Arquero", 'A', pos, 10, 3.0, ARQUERO_COSTO) {}
 
     int atacar(std::vector<Enemigo*>& enemigos, std::vector<Texto>& eventos) override {
         int flechas = (nivel >= 4) ? 2 : 1;

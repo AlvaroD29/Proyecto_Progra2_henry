@@ -3,16 +3,16 @@
 
 #include "Defensa.h"
 
+const int CATAPULTA_TURNOS_RECARGA = 1;
+const int CATAPULTA_COSTO = 90;
+
 class Catapulta : public Defensa {
 private:
-    enum { TURNOS_RECARGA = 1 };
     int recarga;
 
 public:
-    enum { COSTO = 90 };
-
     Catapulta(const Posicion& pos)
-        : Defensa("Catapulta", 'C', pos, 22, 2.5, COSTO), recarga(0) {}
+        : Defensa("Catapulta", 'C', pos, 22, 2.5, CATAPULTA_COSTO), recarga(0) {}
 
     int atacar(std::vector<Enemigo*>& enemigos, std::vector<Texto>& eventos) override {
         if (recarga > 0) {
@@ -31,7 +31,7 @@ public:
                 total += golpear(e, danio / 2, eventos);
                 }
         }
-        recarga = TURNOS_RECARGA;
+        recarga = CATAPULTA_TURNOS_RECARGA;
         return total;
     }
 
