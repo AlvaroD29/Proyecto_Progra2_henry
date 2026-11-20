@@ -1,16 +1,18 @@
 #ifndef ARQUERO_H
 #define ARQUERO_H
+#include <vector>
 
 #include "Defensa.h"
+
+using namespace std;
 
 const int ARQUERO_COSTO = 50;
 
 class Arquero : public Defensa {
 public:
-    Arquero(const Posicion& pos)
-        : Defensa("Arquero", 'A', pos, 10, 3.0, ARQUERO_COSTO) {}
+    Arquero(const Posicion& pos) : Defensa("Arquero", 'A', pos, 10, 3.0, ARQUERO_COSTO) {}
 
-    int atacar(std::vector<Enemigo*>& enemigos, std::vector<Texto>& eventos) override {
+    int atacar(vector<Enemigo*>& enemigos,vector<Texto>& eventos) override {
         int flechas = (nivel >= 4) ? 2 : 1;
         int total = 0;
         for (int i = 0; i < flechas; i++) {
