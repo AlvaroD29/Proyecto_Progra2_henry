@@ -2,19 +2,13 @@
 #define TEXTO_H
 
 #include <iostream>
-
 const int CAPACIDAD_TEXTO = 192;
-
-// Cadena de texto de capacidad fija. Reemplaza a std::string porque el proyecto
-// solo puede usar cstdlib, iostream, iomanip, vector y fstream.
-// Si un texto supera CAPACIDAD_TEXTO - 1 caracteres se recorta (no hay desbordamiento).
 class Texto {
 private:
     char datos[CAPACIDAD_TEXTO];
     int largo;
 
     bool esEspacio(char c) const { return c == ' ' || c == '\t'; }
-
 public:
     Texto() : largo(0) { datos[0] = '\0'; }
 
@@ -27,8 +21,6 @@ public:
             datos[largo] = '\0';
         }
     }
-
-    // ---- consulta ----
     int size() const { return largo; }
     bool empty() const { return largo == 0; }
     const char* c_str() const { return datos; }
@@ -36,7 +28,6 @@ public:
     char& operator[](int i) { return datos[i]; }
     char back() const { return datos[largo - 1]; }
 
-    // ---- modificacion ----
     void push_back(char c) {
         if (largo < CAPACIDAD_TEXTO - 1) {
             datos[largo++] = c;
@@ -77,9 +68,6 @@ public:
         return resultado;
     }
 
-    // ---- conversion y analisis ----
-
-    // true si TODO el texto (salvo espacios en los bordes) es un entero valido.
     bool aEntero(int& valor) const {
         int i = 0;
         while (i < largo && esEspacio(datos[i])) i++;
@@ -103,8 +91,6 @@ public:
         return true;
     }
 
-    // Parte el texto por 'separador'. Guarda hasta 'maximo' campos en 'salida' y
-    // devuelve cuantos campos tiene el texto en total.
     int dividir(char separador, Texto salida[], int maximo) const {
         int cantidad = 0;
         Texto actual;
@@ -121,15 +107,14 @@ public:
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Texto& t) {
-        return os << t.datos;   // respeta setw / left / right
+        return os << t.datos;   
     }
 };
 
-// ---- funciones auxiliares (libres, no pertenecen a la clase) ----
 
 inline Texto textoDeEntero(int numero) {
     Texto resultado;
-    long long n = numero;          // evita el desborde de -INT_MIN
+    long long n = numero;        
     bool negativo = n < 0;
     if (negativo) n = -n;
     char invertido[24];
@@ -149,15 +134,13 @@ inline Texto textoRepetir(char c, int veces) {
     return resultado;
 }
 
-// Lee una linea completa de cualquier flujo (cin o un archivo) sin usar std::string.
-// Quita el '\r' final. Devuelve false si ya no quedaban datos.
 inline bool textoLeerLinea(std::istream& entrada, Texto& destino) {
     char buffer[CAPACIDAD_TEXTO];
     destino = Texto();
     entrada.getline(buffer, CAPACIDAD_TEXTO);
     if (entrada.fail()) {
-        if (entrada.eof()) return false;   // fin de archivo sin datos
-        entrada.clear();                    // linea demasiado larga: se recorta
+        if (entrada.eof()) return false;  
+        entrada.clear();                 
         entrada.ignore(1000000, '\n');
     }
     destino = Texto(buffer);
