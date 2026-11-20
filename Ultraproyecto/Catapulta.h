@@ -3,6 +3,8 @@
 
 #include "Defensa.h"
 
+using namespace std;
+
 const int CATAPULTA_TURNOS_RECARGA = 1;
 const int CATAPULTA_COSTO = 90;
 
@@ -14,7 +16,7 @@ public:
     Catapulta(const Posicion& pos)
         : Defensa("Catapulta", 'C', pos, 22, 2.5, CATAPULTA_COSTO), recarga(0) {}
 
-    int atacar(std::vector<Enemigo*>& enemigos, std::vector<Texto>& eventos) override {
+    int atacar(vector<Enemigo*>& enemigos, vector<Texto>& eventos) override {
         if (recarga > 0) {
             recarga--;
             return 0;
@@ -29,7 +31,7 @@ public:
             if (e != objetivo && e->estaActivo() &&
                 (impacto - e->getPosicion()) <= RADIO_EXPLOSION) {
                 total += golpear(e, danio / 2, eventos);
-                }
+            }
         }
         recarga = CATAPULTA_TURNOS_RECARGA;
         return total;
