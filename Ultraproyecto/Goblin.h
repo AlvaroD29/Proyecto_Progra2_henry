@@ -8,8 +8,7 @@ private:
     int golpesRecibidos;
 
 public:
-    Goblin(int nivel)
-        : Enemigo("Goblin", 'g', nivel, 28, 2, 6, 5), golpesRecibidos(0) {}
+    Goblin(int nivel) : Enemigo("Goblin", 'g', nivel, 28, 2, 6, 5), golpesRecibidos(0) {}
 
     int recibirDanio(int cantidad) override {
         golpesRecibidos++;
