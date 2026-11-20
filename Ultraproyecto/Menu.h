@@ -5,7 +5,7 @@
 #include "Consola.h"
 #include "Juego.h"
 #include "GestorEstadisticas.h"
-
+using namespace std;
 class Menu {
 private:
     Consola consola;
@@ -34,7 +34,7 @@ public:
         do {
             consola.limpiar();
             mostrarTitulo();
-            std::cout << "     1. Jugar\n"
+            cout << "     1. Jugar\n"
                       << "     2. Ver estadisticas\n"
                       << "     3. Salir\n\n";
             opcion = consola.leerEntero("     Seleccione una opcion: ", 1, 3);
@@ -51,7 +51,7 @@ public:
                     consola.pausar();
                     break;
                 case 3:
-                    std::cout << "\n     ¡Hasta pronto, comandante!\n";
+                    cout << "\n     ¡Hasta pronto, comandante!\n";
                     break;
             }
         } while (opcion != 3);
